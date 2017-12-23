@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Liste des projets</title>
+</head>
+<body>
+
+{{ some_markdown|raw }}
+
+
+<h1>{{ projets|length }} Projets</h1>
+
+    {% for projet in projets %}
+        <article>
+            <header>
+                <li> <strong> {{ projet.name }}</strong> </li>
+            </header>
+              {{ projet.description }} <br>
+            <ul>
+               <strong>Prix: </strong>  ${{ projet.TargetAmount }} <br>
+               <strong>Site internet: </strong>  {{ projet.Website }} <br>
+               <strong>Expiration: </strong> {{ projet.ExpiredOn|date(null, "Europe/Paris") }}
+            </ul>
+        </article>
+
+    {% endfor %}
+
+
+</body>
+</html>

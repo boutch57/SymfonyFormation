@@ -19,7 +19,7 @@ class ProjectsController extends Controller
 
         $some_markdown = "super *code* **Markdown** haha";
 
-        $transformer = new MarkDownTransformer();
+        $transformer = $this->get('app.markdown_transformer');
         $some_markdown = $transformer->parse($some_markdown);
 
         $key = 'key';
@@ -30,8 +30,6 @@ class ProjectsController extends Controller
         }
 
         else {
-
-            sleep(1);
 
             $some_markdown = $this->get('markdown.parser')->transformMarkdown($some_markdown);
             $cache->save($key, $some_markdown);
